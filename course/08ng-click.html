@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			<input ng-model="username" />
+			<button ng-click="test(username)">按钮点击测试</button>
+		</div>
+		</body>
+	<script type="text/javascript">
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.username= "angular"
+			$scope.test = function(str){
+				alert(str)
+			}
+		})
+	</script>
+</html>

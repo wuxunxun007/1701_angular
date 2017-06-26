@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			{{msg}}---{{1+10}}----{{10/0}}----{{"a"+"b"}}
+			<hr />
+			{{list[0]}}
+			-----
+			<ul>
+				<li ng-repeat="item in list">{{item}}-----{{$index}}</li>
+			</ul>
+			<hr />
+		</div>
+		<div  ng-controller="ctrl1">
+			
+			{{user.name}}今年{{user.age}}岁，是一个{{user.sex}}的，电话号是{{user.tel}}
+			-----
+			<ul>
+				<li ng-repeat="item in users">{{item.name}}今年{{item.age}}岁，是一个{{item.sex}}的，电话号是{{item.tel}}-----{{$index}}</li>
+			</ul>
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * angular 中的循环，使用的是指令 ng-repeat = "item in list"
+		 * 如果需要索引值，那么直接通过$index使用即可，如果需要多层循环，继续ng-repeat即可
+		 * 
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.msg = "angular初体验";
+			$scope.list = ["奔驰","宝马","马萨拉蒂","兰博基尼"];
+			$scope.user = {
+				name:"qqy",
+				age:28,
+				sex:"女",
+				tel:15800864754
+			};
+			$scope.users = [{
+				name:"qqy",
+				age:28,
+				sex:"女",
+				tel:15800864754
+			},{
+				name:"qqy1",
+				age:18,
+				sex:"男",
+				tel:15800864754
+			}]
+		})
+		app.controller("ctrl1",function($scope){
+			$scope.user = {
+				name:"qqy",
+				age:28,
+				sex:"女",
+				tel:15800864754
+			};
+			$scope.users = [{
+				name:"qqy",
+				age:28,
+				sex:"女",
+				tel:15800864754
+			},{
+				name:"qqy1",
+				age:18,
+				sex:"男",
+				tel:15800864754
+			}]
+		})
+	</script>
+</html>

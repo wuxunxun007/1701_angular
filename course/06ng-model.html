@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			<input type="text" ng-model="username"/>
+			
+			{{username}}
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-model     v-model
+		 *    一致   
+		 * 		双向的数据绑定
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.username= "angular"
+		})
+	</script>
+</html>

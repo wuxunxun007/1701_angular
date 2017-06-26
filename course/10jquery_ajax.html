@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/dist/css/bootstrap.min.css"/>
+		<script src="lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="lib/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div class="container"  ng-controller="ctrl">
+			<button ng-click="getData()">获取数据</button>
+			<table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>序号</th>
+		          <th>名称</th>
+		          <th>图片</th>
+		          <th>价格</th>
+		          <th>折扣</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		      	<tr ng-show="isOk">
+		      		<td colspan="5">正在加载</td>
+		      	</tr>
+		        <tr ng-hide="isOk" ng-repeat = "item in list">
+		          <th scope="row">{{$index+1}}</th>
+		          <td>{{item.goodsName}}</td>
+		          <td><img ng-src="{{item.goodsListImg}}"/></td>
+		          <td>{{item.price}}</td>
+		           <td>{{item.discount}}</td>
+		        </tr>
+		      </tbody>
+		    </table>
+			
+			
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-show   ng-hide
+		 * v-show
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.list = [];
+			$scope.isOk = true;
+			$.ajax({
+				type:"get",
+				url:"http://datainfo.duapp.com/shopdata/getGoods.php?callback=",
+				dataType:"jsonp",
+				success:function(data){
+					console.log(data)
+					$scope.list = data;
+					$scope.isOk = false;
+					//更新数据必须使用，否则不会立马更新视图
+					$scope.$apply();
+				}
+			});
+			
+			
+			$scope.getData = function(){
+				$.ajax({
+					type:"get",
+					url:"http://datainfo.duapp.com/shopdata/getGoods.php?callback=",
+					dataType:"jsonp",
+					success:function(data){
+						console.log(data)
+						$scope.list = data;
+						$scope.$apply();
+					}
+				});
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		{{msg}}
+		<div ng-app = "myApp" ng-controller="ctrl">
+			{{msg}}
+		</div>
+		<div ng-app = "myApp1" ng-controller="ctrl1">
+				{{msg1}}
+			</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-app 称之为 程序的入口-----一个程序的主函数入口
+		 * 	位置，可以自己设定，如果设置在html上，则表示这个程序全局都在使用angularjs,
+		 * 			如果设定在某一个标签上，则表示只有在此内部有效
+		 * 	可以和原有的html代码完美结合，有效范围为ng-app所包裹的位置，其余则原样输出
+		 * 
+		 *  一个页面只能有一个ng-app指令，如果有多个，则只有第一个是生效的，其余的原样输出
+		 */
+		//绑定ng-app的作用范围，生成一个实例，第一个参数代表ng-app的作用域的名字，第二个代表的后期需要依赖的模块
+		var app = angular.module("myApp",[]);
+		//controller控制器
+		app.controller("ctrl",function($scope){
+			//代表的初始化的变量
+			$scope.msg = "angular初体验";
+		})
+		var app1 = angular.module("myApp1",[]);
+		app1.controller("ctrl1",function($scope){
+			$scope.msg1 = "angular初体验";
+		})
+	</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			<img src="img/logo.png"/>
+			<br/>
+			<!--<img src="{{imgUrl}}"/>-->
+			<br/>
+			<img ng-src="{{imgUrl}}"/>
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-src
+		 * 	图片如果是服务器上的，那么必须通过ng-src来绑定图片地址
+		 *  如果没有则会报错
+		 * 		
+		 * 因为进行了两步操作：
+				1.表达式直译，没做网络请求； img src="{{imgUrl}}"    ---- 图片会报错
+				2.再进行网络请求，然后显示图片； imgUrl= "img/logo.png"    img src= "img/logo.png" 
+			
+			ng-src   
+				解析指令，先拿到值，再赋值，再显示
+		 * 
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.msg = "angular初体验";
+			$scope.imgUrl = "img/logo.png"
+		})
+	</script>
+</html>

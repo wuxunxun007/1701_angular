@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/dist/css/bootstrap.min.css"/>
+		<script src="lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="lib/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div class="container"  ng-controller="ctrl">
+			
+			<table class="table table-bordered">
+		      <thead>
+		        <tr>
+		          <th>序号</th>
+		          <th>姓名</th>
+		          <th>性别</th>
+		          <th>关注数</th>
+		          <th>关注</th>
+	           	  <th>取消关注</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr ng-repeat = "user in list">
+		          <th scope="row">{{$index + 1}}</th>
+		          <td>{{user.name}}</td>
+		          <td>{{user.sex}}</td>
+		          <td>{{user.num}}</td>
+		           <td><button class="btn btn-success btn-xs" ng-click="addNum(user)"> 关注</button></td>
+		            <td><button class="btn btn-danger btn-xs" ng-click="reduceNum(user)"> 取消关注</button></td>
+		        </tr>
+		      </tbody>
+		    </table>
+			
+			
+		</div>
+		</body>
+	<script type="text/javascript">
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.list= [{
+				name:"qqy",
+				sex:"男",
+				num:40
+			},
+			{
+				name:"wct",
+				sex:"女",
+				num:33
+			},
+			{
+				name:"zhl",
+				sex:"男",
+				num:0
+			},
+			{
+				name:"xyh",
+				sex:"女",
+				num:18
+			}];
+			
+			$scope.addNum = function(user){
+				user.num += 1;
+			}
+			$scope.reduceNum = function(user){
+				user.num -= 1;
+			}
+		})
+	</script>
+</html>

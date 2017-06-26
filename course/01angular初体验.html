@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+			aaaa{{msg}}
+		<div  ng-controller="ctrl">
+			{{msg}}
+		</div>
+	
+	</body>
+	<script type="text/javascript">
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.msg = "angular初体验";
+		})
+	</script>
+</html>
