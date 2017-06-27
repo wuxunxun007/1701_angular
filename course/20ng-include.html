@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			<div ng-include="'20tem.html'"></div>
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-include  可以导入一个模板到既定的地方
+		 * ng-include="'20tem.html'"
+		 * 	一定切记要注意给地址加一个引号
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			
+		})
+	</script>
+</html>

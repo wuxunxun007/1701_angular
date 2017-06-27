@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			<button ng-click="changeTem('21itemA',0)">a模板</button>
+			<button ng-click="changeTem('21itemB',1)">b模板</button>
+			<div ng-include="tem"></div>
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * ng-include  可以导入一个模板到既定的地方
+		 * ng-include="'20tem.html'"
+		 * 	一定切记要注意给地址加一个引号
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.tem = "21itemA.html";
+			$scope.changeTem = function(str){
+				$scope.tem = str + ".html";
+			}
+		})
+		app.controller("bctrl",function($scope){
+			$scope.list = [];
+			$.ajax({
+		type:"get",
+		url:"http://localhost:8000",
+		success:function(data){
+			
+			$scope.list = JSON.parse(data).subjects;
+			$scope.$apply();
+			console.log($scope.list)
+		}
+	});
+		})
+	</script>
+</html>
