@@ -25,7 +25,6 @@
 			</select>{{pageCode*1 + 1}},总的个数为{{len}}-->
 			<ul>
 				<li ng-repeat="item in movieList | limitTo:num:pageCode*num | orderBy:'title':false">
-					<input type="checkbox"  />
 					<p>{{item.title}}---{{item.year}}---{{item.rating.average}}</p>
 					<img ng-src="{{item.images.small}}"/>
 				</li>
