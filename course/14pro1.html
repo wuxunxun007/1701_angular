@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app = "myApp">
+		<div  ng-controller="ctrl">
+			
+			每页显示的个数
+				<select ng-model="num" ng-change="changeNum()" >
+					<option value="2">2</option>
+					<option value="4">4</option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+				</select>{{num}}
+			显示的页数
+			<button ng-repeat="item in list" ng-click="changePageCode(item)">第{{item + 1}}页</button>
+			<!--<select ng-model="pageCode">
+				<option ng-repeat="item in list" value="{{item}}">{{item+1}}</option>
+			</select>{{pageCode*1 + 1}},总的个数为{{len}}-->
+			<ul>
+				<li ng-repeat="item in movieList | limitTo:num:pageCode*num">
+					<p>{{item.title}}</p>
+					<img ng-src="{{item.images.small}}"/>
+				</li>
+			</ul>
+		</div>
+		</body>
+	<script type="text/javascript">
+		/**
+		 * {{ 表达式 | 过滤条件}}
+		 * uppercase 将表达式的值都转化为大写
+		 * lowercase 都转化为小写
+		 * number  如果需要保留几位有效数字   那么就是 number:2
+		 * currency  货币符号   默认是$   如果想要￥  那么     currency:"￥"
+		 * date   注意时间格式化不能对字符串类型进行操作的
+		 * 
+		 * 指令中 使用 limitTo可以限制数据显示的条数和页数
+		 * 	limitTo:num:begin
+		 * 		num表示的是显示的个数
+		 * 		begin表示的是从那一条数据开始显示，但是不包括这一条数据
+		 * 
+		 *  思考：6条数据，假如每一个显示8条数据，从第2条开始
+		 * 		limitTo:8:1
+		 * 
+		 */
+		console.log(new Date())
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",function($scope){
+			$scope.num = "2";//初始值  每页显示2个
+			$scope.pageCode = "0";//从第1页开始（第0页）
+			$scope.len = 20;
+			$scope.movieList = [];
+			
+			$.ajax({
+				type:"get",
+				url:"http://localhost:8000",
+				success:function(response){
+					var data = JSON.parse(response);
+					$scope.len = data.count;//数据的长度
+					console.log(data)
+					$scope.movieList = data.subjects;
+					$scope.$apply();
+				}
+			});
+			
+			
+			$scope.test = function(){//重新计算页数
+				var n = Math.ceil($scope.len/$scope.num);
+				console.log(n)
+				var arr = [];
+				for(var i=0; i < n; i++){
+					arr.push(i)
+				}
+				$scope.list = arr;
+			}
+			$scope.test();//生成页数----循环遍历
+			$scope.changeNum = function(){//点击选择页面显示个数之后，页面发生改变
+//				alert($scope.num)
+				$scope.test();
+			}
+			$scope.changePageCode = function(item){
+				$scope.pageCode = item;
+			}
+			
+		})
+	</script>
+</html>
