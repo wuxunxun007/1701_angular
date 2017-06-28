@@ -1,0 +1,23 @@
+<div ng-controller="dbkindCtrl">
+	<table class="table table-hover table-bordered" >
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>电影名称</th>
+				<th>电影图片</th>
+				<th>评分</th>
+				<th>演员</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat = "item in movielist">
+				<td>{{$index+1}}</td>
+				<td>{{item.title}}</td>
+				<td><img ng-src="{{item.images.small}}" style="width: 100px;height: 100px;"/></td>
+				<td >{{item.rating.average}}</td>
+				<td><span class="label label-success" ng-repeat = "user in item.casts">{{user.name}}</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,24 @@
+<div ng-controller="kindCtrl">
+	<h2>分类><b>{{className}}</b></h2>
+	<table class="table table-hover table-bordered" >
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>产品名称</th>
+				<th>产品图片</th>
+				<th>产品价格</th>
+				<th>产品折扣</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat = "item in prolist">
+				<td>{{$index+1}}</td>
+				<td>{{item.goodsName}}</td>
+				<td><img ng-src="{{item.goodsListImg}}" style="width: 100px;height: 100px;"/></td>
+				<td >{{item.price | currency:"￥"}}</td>
+				<td><span class="label label-success">{{item.discount}}</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
