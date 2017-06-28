@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/fetch-jsonp/1.1.1/fetch-jsonp.min.js"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div  ng-controller="ctrl">
+			<ul>
+				<li ng-repeat="item in list">{{item}}</li>
+			</ul>
+		</div>
+	
+	</body>
+	<script type="text/javascript">
+		/**
+		 * $interval  服务    ------  setInterval
+		 * 		第一步，给controller注入此服务
+		 * 		第二步，使用
+		 * 
+		 * app.controller("ctrl",["$scope",function($scope){
+		 * 	
+		 * }])
+		 * 函数内部的$scope可以选择任意的一个名字a，在此函数内部就可以使用a来代替$scope
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",["$scope","$http","$templateCache",function($scope,$http,$templateCache){
+			$scope.list = [];
+//			$http({
+//				method:"GET",
+//				url:"http://localhost:8000"
+//			}).then(function(responseText){
+//				console.log(responseText.data)
+//			},function(err){
+//				console.log(err)
+//			})
+//			$http.get("http://localhost:8000").then(function(responseText){
+//				console.log(responseText.data)
+//			})
+//			$http.get("http://datainfo.duapp.com/shopdata/getclass.php").then(function(responseText){
+//				console.log(responseText.data)
+//			})
+//			$http.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=").then(function(responseText){
+////				console.log(responseText.data);
+//				var result = responseText.data;
+////				var data = eval(result);///eval函数
+//				var len = result.length;
+//				var data = JSON.parse(result.substring(1,len-1));//截取字符串
+//				console.log(data)
+//				$scope.list = data;
+//			})
+
+//			$http.jsonp("http://datainfo.duapp.com/shopdata/getGoods.php?callback=JSON_CALLBACK").then(function(data){
+//				console.log(data)
+//			})//这是错误的****************
+//			$http.jsonp('http://datainfo.duapp.com/shopdata/getGoods.php', {jsonpCallbackParam: 'callback'}).then(function(data){
+//				console.log(data)
+//			})//这是错误的****************
+
+//			$http({method: "JSONP", url: "http://datainfo.duapp.com/shopdata/getGoods.php", cache: $templateCache}).
+//	            then(function(response) {
+//	              console.log(response)
+//	            }, function(err) {
+//	             console.log(err)
+//	          });//这是错误的****************
+
+//			fetch("http://datainfo.duapp.com/shopdata/getclass.php").then(function(response) {
+//			  return response.json();
+//			}).then(function(data) {
+//			  console.log(data);
+//			  $scope.list = data;
+//			  $scope.$apply();
+//			}).catch(function(e) {
+//			  console.log("Oops, error");
+//			});
+//			fetchJsonp("http://datainfo.duapp.com/shopdata/getGoods.php",{
+//				timeout:2000,
+//				jsonpCallback:"callback"
+//			}).then(function(response) {
+//			  return response.json();
+//			}).then(function(data) {
+//			  console.log(data);
+//			  $scope.list = data;
+//			  $scope.$apply();
+//			}).catch(function(e) {
+//			  console.log("Oops, error");
+//			});
+			fetchJsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=php",{
+				timeout:2000,
+				jsonpCallback:"cb"//如果接口为不为callback,为cb时，修改此参数，
+			}).then(function(response) {
+			  return response.json();
+			}).then(function(data) {
+			  console.log(data);
+			  $scope.list = data.s;
+			  $scope.$apply();
+			}).catch(function(e) {
+			  console.log("Oops, error");
+			});
+		}])
+	</script>
+</html>

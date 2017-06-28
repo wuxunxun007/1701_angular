@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div  ng-controller="ctrl">
+			<button ng-click="begin()">点击按钮5秒后开始改变</button>
+			计数器{{count}}
+		</div>
+	
+	</body>
+	<script type="text/javascript">
+		/**
+		 * $interval  服务    ------  setInterval
+		 * 		第一步，给controller注入此服务
+		 * 		第二步，使用
+		 * 
+		 * app.controller("ctrl",["$scope",function($scope){
+		 * 	
+		 * }])
+		 * 函数内部的$scope可以选择任意的一个名字a，在此函数内部就可以使用a来代替$scope
+		 */
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",["$scope","$interval","$timeout",function($scope,$interval,$timeout){
+			$scope.count=0;
+			
+			$scope.test = function(){
+				$interval(function(){
+					console.log(11)
+					$scope.count++;
+				},1000);
+			};
+			
+			$scope.begin = function(){
+				$timeout(function(){
+					$scope.test();
+				},5000);
+			}
+		}])
+	</script>
+</html>
