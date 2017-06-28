@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/fetch-jsonp/1.1.1/fetch-jsonp.min.js"></script>
+		<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div  ng-controller="ctrl">
+			<ul>
+				<li>
+					<a href="#!/home">首页</a>
+					<a href="#!/kind">分类</a>
+					<a href="#!/cart">购物车</a>
+					<a href="#!/user">我的</a>
+				</li>
+			</ul>
+			
+			<div ng-view></div>
+		</div>
+	
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 1、cnpm i angular-route   下载一个angular-route.min.js,在页面中引入
+		 * 2、实例化入口ng-app时添加一个模块ngRoute
+		 * 		var app = angular.module("myApp",['ngRoute']);
+		 * 3、设备匹配规则
+		 * 		app.config(["$routeProvider",function($routeProvider){
+		 * 			$routeProvider.when("/home",{template/templateUrl})
+		 * 						  .when("/kind",{template/templateUrl})
+		 * 						  .when("/user",{template/templateUrl})
+		 * 						  .otherwise({redirectTo:"/home"})
+		 * }])
+		 */
+		var app = angular.module("myApp",['ngRoute']);
+		app.config(['$routeProvider',
+            function($routeProvider) {
+              $routeProvider
+                .when('/home', {
+                  template: '<h1>首页</h1>'
+                })
+                 .when('/kind', {
+                  template: '<h1>分类</h1>'
+                })
+                  .when('/cart', {
+                  template: '<h1>购物车</h1>'
+                })
+                   .when('/user', {
+                  template: '<h1>我的</h1>'
+                })
+                   .otherwise({redirectTo:"/home"})
+          }])
+		
+		
+		app.controller("ctrl",["$scope",function($scope){
+			
+		}])
+	</script>
+</html>
