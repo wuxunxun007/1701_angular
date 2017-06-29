@@ -1,0 +1,39 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\asus\\AppData\\Roaming\\npm\\node_modules\\cnpm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   '--userconfig=C:\\Users\\asus\\.cnpmrc',
+1 verbose cli   '--disturl=https://npm.taobao.org/mirrors/node',
+1 verbose cli   '--registry=https://registry.npm.taobao.org',
+1 verbose cli   'run',
+1 verbose cli   'lite' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.2
+4 verbose run-script [ 'prelite', 'lite', 'postlite' ]
+5 info lifecycle angular2-quickstart@1.0.0~prelite: angular2-quickstart@1.0.0
+6 silly lifecycle angular2-quickstart@1.0.0~prelite: no script for prelite, continuing
+7 info lifecycle angular2-quickstart@1.0.0~lite: angular2-quickstart@1.0.0
+8 verbose lifecycle angular2-quickstart@1.0.0~lite: unsafe-perm in lifecycle true
+9 verbose lifecycle angular2-quickstart@1.0.0~lite: PATH: C:\Users\asus\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\bin\node-gyp-bin;C:\Users\asus\Documents\HBuilderProject\sh-h5-1701\week8_angular\day04\1701_angular\course\angular2\node_modules\.bin;C:\Users\asus\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\bin\node-gyp-bin;C:\Users\asus\Documents\HBuilderProject\sh-h5-1701\week8_angular\day04\1701_angular\course\angular2\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;D:\soft\android IDE\sdk;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\asus\AppData\Roaming\npm\gulp;C:\Users\asus\AppData\Roaming\npm\bower;D:\Program Files\TortoiseSVN\bin;	C:\Program Files\Java\jdk1.8.0_111\bin;	D:\Program Files (x86)\apache-ant-1.9.7\bin;D:\soft\android IDE\sdk\tools;D:\Program Files\VisualSVN Server\bin;C:\Program Files\Java\jdk1.8.0_111\jre\bin;D:\Program Files\MongoDB\Server\3.4\bin;C:\Program Files\nodejs;D:\soft\android IDE\sdk\platforms;D:\soft\android IDE\sdk\platform-tools;C:\Program Files\nodejs\;D:\soft\Ruby22\bin;C:\Users\asus\AppData\Local\Microsoft\WindowsApps;E:\course-wxx\jsBriage\jsBriage\apache-ant-1.9.7\bin;C:\Users\asus\AppData\Roaming\npm\node_modules\cordova\bin;C:\Users\asus\AppData\Local\atom\bin;C:\Users\asus\AppData\Roaming\npm;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+10 verbose lifecycle angular2-quickstart@1.0.0~lite: CWD: C:\Users\asus\Documents\HBuilderProject\sh-h5-1701\week8_angular\day04\1701_angular\course\angular2
+11 silly lifecycle angular2-quickstart@1.0.0~lite: Args: [ '/d /s /c', 'lite-server' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1018:11)
+12 verbose stack     at process.kill (internal/process.js:190:13)
+12 verbose stack     at process.listener (C:\Users\asus\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at emitNone (events.js:91:20)
+12 verbose stack     at process.emit (events.js:185:7)
+12 verbose stack     at processEmit (C:\Users\asus\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at processEmit (C:\Users\asus\AppData\Roaming\npm\node_modules\cnpm\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
+13 verbose cwd C:\Users\asus\Documents\HBuilderProject\sh-h5-1701\week8_angular\day04\1701_angular\course\angular2
+14 error Windows_NT 10.0.15063
+15 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\asus\\AppData\\Roaming\\npm\\node_modules\\cnpm\\node_modules\\npm\\bin\\npm-cli.js" "--userconfig=C:\\Users\\asus\\.cnpmrc" "--disturl=https://npm.taobao.org/mirrors/node" "--registry=https://registry.npm.taobao.org" "run" "lite"
+16 error node v6.10.2
+17 error npm  v3.10.10
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]
