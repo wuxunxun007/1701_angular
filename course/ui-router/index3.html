@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="less/main.css"/>
+		<script src="../lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-controller = "ctrl">
+		<header id="header">
+			
+		</header>
+		<div id="content">
+			<ui-view></ui-view>
+		</div>
+		<footer id="footer">
+			<ul>
+				<li ><a ui-sref="home" ui-sref-active="active">首页</a></li>
+				<li ><a ui-sref="kind" ui-sref-active="active">分类</a></li>
+				<li ><a ui-sref="cart" ui-sref-active="active">购物车</a></li>
+				<li ><a ui-sref="user" ui-sref-active="active">我的</a></li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * 1、引入angular-ui-router.min.js 
+		 * 		cnpm i angular-ui-router@next       release文件夹中
+		 * 2、引入ui-router模块
+		 * 		var app = angular.module("myapp",["ui.router"]);
+		 * 3、设置路由匹配规则
+		 * 		$stateProvider   $stateProvider.state("name",{url,template/templateUrl})
+		 * 4、添加路由
+		 * 	<li ui-sref="home">首页</li>   ui-sref   注意不是用的url，用的是name
+		 * 5、添加视图
+		 * 		<ui-view></ui-view>
+		 * 6、添加选中的样式
+		 * 		ui-sref-active="active"
+		 * 		.active{color:#f66}
+		 * 7、参考链接
+		 * 		https://ui-router.github.io/ng1/tutorial/helloworld
+		 * 8、创建组件kind
+		 * 		app.component("kind",{
+					templateUrl:"com/kind.html",
+					controller:function(){
+						this.classlist = [1,2,3,4,5,6]
+					}
+				})
+			9、修改路由配置
+				.state("kind",{
+						url:"/kind",
+						component:"kind"
+					})
+			10、在组件kind中controller中进行http数据请求，注意注入$http服务
+			11、在kind.html中直接通过$ctrl.classlist访问数据
+			12、点击左侧的页面，右侧的内容跟着切换
+				1）添加一个路由
+					.state("kind.list",{//name位置名称的定义，现在是在kind页面里面有嵌套路由
+						url:"/list",
+						component:"pro",
+						params:{//用来传递参数的
+							pro:{}//参数对象的集合
+						}
+					})
+				2）、在左侧的列表中添加了点击事件，注意调用时添加$ctrl
+					ng-click="$ctrl.changeKind(item.classID,item.className)"
+				3)定义方法changeKind，在king组件中定义
+					this.changeKind = function(classID,className){
+						console.log(classID)
+						//注入$state服务，使用$state.go()可以实现路由的跳转，也可以传递参数
+						$state.go("kind.list",{pro:{classID:classID,className:className}})
+					}
+				4）路由跳转，参照第3）步方法
+				5）、二级路由视图部分-----组件pro
+						在组件pro中的controller中注入服务$stateParams,通过$stateParams可以得到传递的参数
+		 				controller:function($stateParams){
+							console.log($stateParams.pro)
+							this.className = $stateParams.pro.className
+						}
+				6）、依据接收到的参数进行数据的请求
+						
+		 * */
+		var app = angular.module("myApp",["ui.router"]);
+		//组件
+		app.component("kind",{
+			templateUrl:"com/kind.html",
+			controller:function($http,$state){
+				var that = this;
+				this.classlist = [1,2,3,4,5,6];
+				$http.get("http://datainfo.duapp.com/shopdata/getclass.php").then(function(response){
+					that.classlist = response.data;
+				})
+				
+				this.changeKind = function(classID,className){
+					console.log(classID)	
+					$state.go("kind.list",{pro:{classID:classID,className:className}})
+				}
+			}
+		})
+		app.component("pro",{
+			templateUrl:"com/pro.html",
+			controller:function($stateParams,$http){
+				var that = this;
+				console.log($stateParams.pro)
+				this.className = $stateParams.pro.className
+				var classID = $stateParams.pro.classID
+				$http.get("http://datainfo.duapp.com/shopdata/getGoods.php?classID="+classID+"&callback=").then(function(response){
+					console.log(eval(response.data));
+					that.proList = eval(response.data);
+				})
+			}
+		})
+		
+		//路由
+		app.config(["$stateProvider",function($stateProvider){
+			$stateProvider
+					.state("home",{
+						url:"/home",
+						template:"<h1>首页</h1>"
+						
+					})
+					.state("kind",{
+						url:"/kind",
+						component:"kind",
+					})
+					.state("kind.list",{
+						url:"/list",
+						component:"pro",
+						params:{
+							pro:{}
+						}
+					})
+					.state("cart",{
+						url:"/cart",
+						template:"<h1>购物车</h1>"
+					})
+					.state("user",{
+						url:"/user",
+						template:"<h1>个人中心</h1>"
+					})
+		}])
+		
+		app.controller("ctrl",["$scope",function($scope){
+			
+		}]);
+	</script>
+</html>

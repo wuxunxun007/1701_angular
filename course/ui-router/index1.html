@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<a ui-sref="home">home</a>---------<a ui-sref="kind">kind</a>
+		<div ui-view></div>
+	</body>
+	<script type="text/javascript">
+		var app = angular.module("myApp",["ui.router"]);
+		var myapp = angular.module("myApp");
+		//组件
+		myapp.component("home",{
+//			template:"<h1>{{$ctrl.hello}}----home</h1>",
+			templateUrl:"com/home.html",
+			controller:function(){//此控制器中不需要传递$scope,可以直接使用this
+				this.hello = "hello world";
+				
+			}
+		})
+		myapp.component("kind",{
+			template:"<h1>{{$ctrl.hello}}----kind</h1>",
+			controller:function(){//此控制器中不需要传递$scope,可以直接使用this
+				this.hello = "hello world";
+				
+			}
+		})
+		app.config(["$stateProvider",function($stateProvider){
+			$stateProvider
+					.state("home",{
+						url:"/home",
+						component:"home"
+					})
+					.state("kind",{
+						url:"/kind",
+						component:"kind"
+					})
+		}]);
+		app.controller("ctrl",function($scope){
+			
+		})
+	</script>
+</html>

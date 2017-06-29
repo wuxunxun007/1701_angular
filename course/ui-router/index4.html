@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="less/main.css"/>
+		<script src="../lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-controller = "ctrl">
+		<header id="header">
+			<ui-view name="header"></ui-view>
+		</header>
+		<div id="content">
+			<ui-view name="content"></ui-view>
+		</div>
+		<footer id="footer">
+			<ul>
+				<li ><a ui-sref="home" ui-sref-active="active">首页</a></li>
+				<li ><a ui-sref="kind" ui-sref-active="active">分类</a></li>
+				<li ><a ui-sref="cart" ui-sref-active="active">购物车</a></li>
+				<li ><a ui-sref="user" ui-sref-active="active">我的</a></li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * https://ui-router.github.io/guide/views
+		 * 
+		 */
+		
+		var app = angular.module("myApp",["ui.router"]);
+		//组件
+		app.component("headerComponent",{
+			template:"头部",
+			controller:function(){
+			}
+		})
+		app.component("contentComponent",{
+			template:"内容",
+			controller:function(){
+			}
+		})
+		app.component("headerKindComponent",{
+			template:"Kind头部",
+			controller:function(){
+			}
+		})
+		app.component("contentKindComponent",{
+			template:"Kind内容",
+			controller:function(){
+			}
+		})
+		app.component("headerCartComponent",{
+			template:"Cart头部",
+			controller:function(){
+			}
+		})
+		app.component("contentCartComponent",{
+			template:"Cart内容",
+			controller:function(){
+			}
+		})
+		app.component("headerUserComponent",{
+			template:"User头部",
+			controller:function(){
+			}
+		})
+		app.component("contentUserComponent",{
+			template:"User内容",
+			controller:function(){
+			}
+		})
+		//路由
+		app.config(["$stateProvider",function($stateProvider){
+			$stateProvider
+					.state("home",{
+						url:"/home",
+						views:{
+							header:"headerComponent",
+							content:"contentComponent",
+						}
+						
+					})
+					.state("kind",{
+						url:"/kind",
+						views:{
+							header:"headerKindComponent",
+							content:"contentKindComponent",
+						}
+						
+					})
+					.state("cart",{
+						url:"/cart",
+						views:{
+							header:"headerCartComponent",
+							content:"contentCartComponent",
+						}
+						
+					})
+					.state("user",{
+						url:"/user",
+						views:{
+							header:"headerUserComponent",
+							content:"contentUserComponent",
+						}
+						
+					})
+		}])
+		
+		app.controller("ctrl",["$scope",function($scope){
+			
+		}]);
+	</script>
+</html>
