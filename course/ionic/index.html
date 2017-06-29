@@ -1,0 +1,57 @@
+<html ng-app="ionicApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>菜鸟教程(runoob.com)</title>
+    <link href="https://cdn.bootcss.com/ionic/1.3.2/css/ionic.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/ionic/1.3.2/js/ionic.bundle.min.js"></script>
+    <script type="text/javascript">
+    angular.module('ionicApp', ['ionic'])
+
+    .controller('MyCtrl', function($scope) {
+
+    });
+    </script>
+    <style>
+    body {
+    cursor: url('http://www.runoob.com/static/img/finger.png'), auto;
+    }
+    .box{width: 100%;
+    height: 200px;}
+    .blue{
+    	background-color:blue;
+    }
+    .yellow{
+    	background-color: yellow;
+    }
+    </style>
+</head>
+<body ng-controller="MyCtrl">
+
+    <ion-header-bar align-title="left" class="bar-positive">
+		  <div class="buttons">
+		    <button class="button" ng-click="doSomething()">左侧按钮</button>
+		  </div>
+		  <h1 class="title">Title!</h1>
+		  <div class="buttons">
+		    <button class="button">右侧按钮</button>
+		  </div>
+		</ion-header-bar>
+
+    <ion-content>
+                <p>我的第一个 ionic 应用。</p>
+                <ion-slide-box>
+			  <ion-slide>
+			    <div class="box blue"><h1>BLUE</h1></div>
+			  </ion-slide>
+			  <ion-slide>
+			    <div class="box yellow"><h1>YELLOW</h1></div>
+			  </ion-slide>
+			  <ion-slide on-slide-changed="slideHasChanged(index)">
+			    <div class="box pink"><h1>PINK</h1></div>
+			  </ion-slide>
+			</ion-slide-box>
+    </ion-content>
+
+    </body>
+</html>
